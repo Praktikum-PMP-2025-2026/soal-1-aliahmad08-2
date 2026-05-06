@@ -2,19 +2,18 @@
 #include <stdlib.h>
 #include <string.h>
 
-// deklarasi struct
-typedef struct medis {
+struct medis {
     char ID[50];
     int durasi;
     struct medis* next;
-}medis;
+};
 
-// nambah prajurit baru ke akhir linked list
-//void tambahPasien(struct medis** head, char* ID, int durasi) {
-   // struct medis* baru = (struct medis*)malloc(sizeof(struct medis));
-   // strcpy(baru->ID, ID);
-   // baru->durasi = durasi;
-   // baru->next = NULL;
+
+void tambahPasien(struct medis** head, char* ID, int durasi) {
+    struct medis* baru = (struct medis*)malloc(sizeof(struct medis));
+    strcpy(baru->ID, ID);
+    baru->durasi = durasi;
+    baru->next = NULL;
 
     //kalau linked list kosong
     if (*head == NULL) {
@@ -27,22 +26,28 @@ typedef struct medis {
         temp = temp->next;
     }
     temp->next = baru;
-
+}
 
 int main() {
     struct medis* head = NULL;
-    
     int T;
     int sum_durasi= 0;
+    char id [100];
+    char order [100];
+    int durasitemp;
     scanf ("%d", &T);
     for (int i = 0; i<T; i++){
-        scanf("%s %d", &medis->ID, &medis->durasi);
-        sum_durasi +=  sum_durasi -> durasi;
-        tambahPasien(&head, medis->ID, medis->durasi);
-    
-    printf("ORDER %s", medis->ID);
-    printf("WAIT %d", sum_durasi);
-
-    return 0;
+        scanf("%c %d", &id , &durasitemp);
+        tambahPasien(&head, id, durasitemp);
+        sum_durasi += durasitemp;
     }
+    printf("ORDER ");
+    struct medis* temp = head;
+    while(temp != NULL){
+        printf("%s", temp->ID);
+    }
+    printf("\n");
+    printf("WAIT %d", &sum_durasi);
+    return 0;
+
 }
